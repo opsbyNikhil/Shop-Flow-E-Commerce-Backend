@@ -1,0 +1,159 @@
+services:
+  # Auth-Backend
+  auth-service-backend:
+    build:
+      context: ./auth-backend/auth-service
+      dockerfile: Dockerfile
+    environment:
+      # - CORS_ORIGIN
+    env_file:
+      - ./auth-backend/auth-service/.env
+    ports:
+      - "8000:8000"
+    networks:
+      - shopflow-network
+    restart: always
+    depends_on:
+      - db_shopflow_auth
+
+  db_shopflow_auth:
+    image: mysql:8.0
+    environment:
+      MYSQL_DATABASE: shopflow_auth
+      MYSQL_ROOT_PASSWORD: shopflow_auth@12345
+    networks:
+      - shopflow-network
+    volumes:
+      - auth-service-backend-db:/var/lib/mysql
+    restart: always
+    
+  # Home-Backend
+
+  home-service-backend:
+    build:
+      context: ./home-backend/home-page-service
+      dockerfile: Dockerfile
+    ports:
+      - "8001:8001"
+    environment:
+      # - FRONTEND_URL=http://54.251.154.110:5173
+    env_file:
+      - ./home-backend/home-page-service/.env
+    networks:
+      - shopflow-network
+    restart: always
+    depends_on:
+      - db_shopflow_home
+
+  # Home-Database-Configuration
+
+  db_shopflow_home:
+    image: mysql:8.0
+    environment:
+      MYSQL_DATABASE: shopflow_home
+      MYSQL_ROOT_PASSWORD: shopflow_home@12345
+    networks:
+      - shopflow-network
+    volumes:
+      - home-service-backend-db:/var/lib/mysql
+    restart: always
+
+  # Product-Backend
+  product-service-backend:
+    build:
+      context: ./product-service/product-service
+      dockerfile: Dockerfile
+    ports:
+      - "8002:8002"
+    env_file:
+      - ./product-service/product-service/.env
+    environment:
+      # - FRONTEND_URL=http://54.251.154.110:5173
+    networks:
+      - shopflow-network
+    restart: always
+    depends_on:
+      - db_shopflow_products
+
+  # Product-Database-Configuration
+  db_shopflow_products:
+    image: mysql:8.0
+    environment:
+      MYSQL_DATABASE: shopflow_products
+      MYSQL_ROOT_PASSWORD: shopflow_products@12345
+    networks:
+      - shopflow-network
+    volumes:
+      - product-service-backend-db:/var/lib/mysql
+    restart: always
+
+  # Cart-Backend
+  cart-service-backend:
+    build:
+      context: ./cart-backend/cart-service
+      dockerfile: Dockerfile
+    ports:
+      - "8003:8003"
+    env_file:
+      - ./cart-backend/cart-service/.env
+    environment:
+      # - FRONTEND_URL=http://54.251.154.110:5173
+    networks:
+      - shopflow-network
+    restart: always
+    depends_on:
+      - db_shopflow_carts
+  
+  # Cart-Database-Configuration
+
+  db_shopflow_carts:
+    image: mysql:8.0
+    environment:
+      MYSQL_DATABASE: shopflow_cart
+      MYSQL_ROOT_PASSWORD: shopflow_cart@12345
+    networks:
+      - shopflow-network
+    volumes:
+      - cart-service-backend-db:/var/lib/mysql
+    restart: always
+
+# Order-Backend
+  order-service-backend:
+    build:
+      context: ./order-backend/order-service/
+      dockerfile: Dockerfile
+    ports:
+      - "8004:8004"
+    env_file:
+      - ./order-backend/order-service/.env
+    environment:
+      # - FRONTEND_URL=http://54.251.154.110:5173
+    networks:
+      - shopflow-network
+    restart: always
+    depends_on:
+      - db_shopflow_orders
+  
+  # Order-Database-Configuration
+
+  db_shopflow_orders:
+    image: mysql:8.0
+    environment:
+      MYSQL_DATABASE: shopflow_orders
+      MYSQL_ROOT_PASSWORD: shopflow_orders@12345
+    networks:
+      - shopflow-network
+    volumes:
+      - order-service-backend-db:/var/lib/mysql
+    restart: always
+
+volumes:
+  auth-service-backend-db:
+  home-service-backend-db:
+  product-service-backend-db:
+  cart-service-backend-db:
+  order-service-backend-db:
+
+networks:
+  shopflow-network:
+    driver: bridge

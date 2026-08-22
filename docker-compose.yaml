@@ -5,7 +5,7 @@ services:
       context: ./auth-backend/auth-service
       dockerfile: Dockerfile
     environment:
-      - CORS_ORIGIN=http://47.129.240.206:5173
+      - CORS_ORIGIN=http://54.255.135.72:5173
     env_file:
       - ./auth-backend/auth-service/.env
     ports:
@@ -36,7 +36,7 @@ services:
     ports:
       - "8001:8001"
     environment:
-      - FRONTEND_URL=http://13.214.148.19:5173
+      - FRONTEND_URL=http://54.255.135.72:5173
     env_file:
       - ./home-backend/home-page-service/.env
     networks:
@@ -68,7 +68,7 @@ services:
     env_file:
       - ./product-service/product-service/.env
     environment:
-      - FRONTEND_URL=http://13.214.148.19:5173
+      - FRONTEND_URL=http://54.255.135.72:5173
     networks:
       - shopflow-network
     restart: always
@@ -97,7 +97,7 @@ services:
     env_file:
       - ./cart-backend/cart-service/.env
     environment:
-      - FRONTEND_URL=http://13.214.148.19:5173
+      - FRONTEND_URL=http://54.255.135.72:5173
     networks:
       - shopflow-network
     restart: always
@@ -127,7 +127,7 @@ services:
     env_file:
       - ./order-backend/order-service/.env
     environment:
-      - FRONTEND_URL=http://13.214.148.19:5173
+      - FRONTEND_URL=http://54.255.135.72:5173
     networks:
       - shopflow-network
     restart: always

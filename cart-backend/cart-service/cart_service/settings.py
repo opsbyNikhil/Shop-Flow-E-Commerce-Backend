@@ -27,7 +27,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = ["18.140.55.183","127.0.0.1", "localhost"]
+ALLOWED_HOSTS = ["56.10.32.120","127.0.0.1", "localhost"]
 
 
 # Application definition
@@ -145,11 +145,11 @@ MAILERS = {
 }
 
 CORS_ALLOWED_ORIGINS = [
-    "http://13.214.148.19:5173",
-    "http://13.214.148.19:5174",
-    "http://13.214.148.19:5175",
-    "http://13.214.148.19:5176",
-    "http://13.214.148.19:5177",
+    "http://54.255.135.72:5173",
+    "http://54.255.135.72:5174",
+    "http://54.255.135.72:5175",
+    "http://54.255.135.72:5176",
+    "http://54.255.135.72:5177",
 ]
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"

@@ -25,7 +25,7 @@ load_dotenv(BASE_DIR / ".env")
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = os.getenv("DEBUG", "False") == "True"
-ALLOWED_HOSTS = ["47.129.240.206", "127.0.0.1", "localhost"]
+ALLOWED_HOSTS = ["18.140.55.183", "127.0.0.1", "localhost"]
 
 
 # Application definition
@@ -135,11 +135,11 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 CORS_ALLOWED_ORIGINS = [
-    "http://47.129.240.206:5173",
-    "http://47.129.240.206:5174",
-    "http://47.129.240.206:5175",
-    "http://47.129.240.206:5176",
-    "http://47.129.240.206:5177",
+    "http://13.214.148.19:5173",
+    "http://13.214.148.19:5174",
+    "http://13.214.148.19:5175",
+    "http://13.214.148.19:5176",
+    "http://13.214.148.19:5177",
 ]
 
 # Default primary key field type

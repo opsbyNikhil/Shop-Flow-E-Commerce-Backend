@@ -181,14 +181,19 @@ REST_FRAMEWORK = {
 
 
 # --------------------------------------------------
-# CORS
+# CORS / CSRF
 # --------------------------------------------------
 
 CORS_ALLOWED_ORIGINS = [
     os.getenv("CORS_ORIGIN", "http://54.255.135.72:5173"),
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    os.getenv("CSRF_ORIGIN", "http://54.255.135.72:5173"),
+]
+
 CORS_ALLOW_CREDENTIALS = True
+
 
 # --------------------------------------------------
 # EMAIL (RESEND)

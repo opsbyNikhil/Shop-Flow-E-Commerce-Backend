@@ -23,7 +23,7 @@ DEBUG = os.getenv("DEBUG", "False") == "True"
 # ]
 
 ALLOWED_HOSTS = [
-    "56.10.32.120",
+    "18.142.132.93",
     "localhost",
     "127.0.0.1",
 ]
@@ -185,11 +185,11 @@ REST_FRAMEWORK = {
 # --------------------------------------------------
 
 CORS_ALLOWED_ORIGINS = [
-    os.getenv("CORS_ORIGIN", "http://54.255.135.72:5173"),
+    os.getenv("CORS_ORIGIN", "http://52.74.36.95:5173"),
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    os.getenv("CSRF_ORIGIN", "http://54.255.135.72:5173"),
+    os.getenv("CSRF_ORIGIN", "http://52.74.36.95:5173"),
 ]
 
 CORS_ALLOW_CREDENTIALS = True

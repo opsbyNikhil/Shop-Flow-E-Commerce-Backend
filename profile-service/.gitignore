@@ -1,0 +1,32 @@
+# Python virtual environment
+venv/
+.venv/
+env/
+
+# Environment variables
+.env
+**/.env
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Django
+*.log
+db.sqlite3
+media/
+staticfiles/
+
+# VS Code
+.vscode/
+
+# React / Node
+node_modules/
+**/node_modules/
+frontend/node_modules/
+frontend/dist/
+dist/
+
+# OS files
+.DS_Store
+Thumbs.db

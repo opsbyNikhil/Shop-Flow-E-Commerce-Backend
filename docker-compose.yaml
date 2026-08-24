@@ -5,7 +5,7 @@ services:
       context: ./auth-backend/auth-service
       dockerfile: Dockerfile
     environment:
-      - CORS_ORIGIN=http://52.74.36.95:5173
+      - CORS_ORIGIN=http://13.250.205.222:5173
     env_file:
       - ./auth-backend/auth-service/.env
     ports:
@@ -36,7 +36,7 @@ services:
     ports:
       - "8001:8001"
     environment:
-      - FRONTEND_URL=http://52.74.36.95:5173
+      - FRONTEND_URL=http://13.250.205.222:5173
     env_file:
       - ./home-backend/home-page-service/.env
     networks:
@@ -68,7 +68,7 @@ services:
     env_file:
       - ./product-service/product-service/.env
     environment:
-      - FRONTEND_URL=http://52.74.36.95:5173
+      - FRONTEND_URL=http://13.250.205.222:5173
     networks:
       - shopflow-network
     restart: always
@@ -97,7 +97,7 @@ services:
     env_file:
       - ./cart-backend/cart-service/.env
     environment:
-      - FRONTEND_URL=http://52.74.36.95:5173
+      - FRONTEND_URL=http://13.250.205.222:5173
     networks:
       - shopflow-network
     restart: always
@@ -127,7 +127,7 @@ services:
     env_file:
       - ./order-backend/order-service/.env
     environment:
-      - FRONTEND_URL=http://52.74.36.95:5173
+      - FRONTEND_URL=http://13.250.205.222:5173
     networks:
       - shopflow-network
     restart: always
@@ -147,12 +147,45 @@ services:
       - order-service-backend-db:/var/lib/mysql
     restart: always
 
+# Profile-Backend
+
+  profile-service-backend:
+    build:
+      context: ./profile-service
+      dockerfile: Dockerfile
+    ports:
+      - "8005:8005"
+    env_file:
+      - ./profile-service/.env
+    environment:
+      - FRONTEND_URL=http://13.250.205.222:5173
+    networks:
+      - shopflow-network
+    restart: always
+    depends_on:
+      - db_shopflow_profiles
+  
+  # Order-Database-Configuration
+
+  db_shopflow_profiles:
+    image: mysql:8.0
+    environment:
+      MYSQL_DATABASE: shopflow_profile
+      MYSQL_ROOT_PASSWORD: shopflow_profiles@12345
+    networks:
+      - shopflow-network
+    volumes:
+      - profile-service-backend-db:/var/lib/mysql
+    restart: always
+
+
 volumes:
   auth-service-backend-db:
   home-service-backend-db:
   product-service-backend-db:
   cart-service-backend-db:
   order-service-backend-db:
+  profile-service-backend-db:
 
 networks:
   shopflow-network:

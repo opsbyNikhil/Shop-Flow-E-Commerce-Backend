@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: StatefulSet
+
+metadata:
+  name: db_shopflow_carts
+  namespace: dev
+
+spec:
+  minReadySeconds: 3
+  replicas: 1
+  
+  serviceName: db_shopflow_carts
+
+  selector:
+    matchLabels:
+      app: db_shopflow_carts
+  
+  template:
+    metadata:
+      labels: 
+        app: db_shopflow_carts
+
+    spec:
+      containers:
+        - name: mysql
+          image: mysql:8.0
+          imagePullPolicy:  IfNotPresent
+
+          ports:
+            - containerPort: 3306
+              protocol: TCP
+          
+          env:
+            - name: MYSQL_DATABASE
+              value: shopflow_cart
+
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: cart-service-secret
+                  key:  DB_PASSSWORD
+      
+      volumeMounts:
+        - name: cart-db-storage
+          mountPath: /var/lib/mysql
+  
+  volumeClaimTemplates:
+    - metadata: 
+      name: cart-db-storage
+
+      spec:
+        storageClassName: shopflow-cart-ebs
+        
+        accessModes:
+          - ReadWriteOnce
+        
+        resources:
+          requests:
+            storage:  2Gi

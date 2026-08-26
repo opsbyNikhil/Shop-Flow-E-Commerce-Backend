@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: StatefulSet
+
+metadata:
+  name: db_shopflow_home
+  namespace: dev
+
+spec:
+  minReadySeconds: 3
+  replicas: 1
+  
+  serviceName: db_shopflow_home
+
+  selector:
+    matchLabels:
+      app: db_shopflow_home
+  
+  template:
+    metadata:
+      labels: 
+        app: db_shopflow_home
+
+    spec:
+      containers:
+        - name: mysql
+          image: mysql:8.0
+          imagePullPolicy:  IfNotPresent
+
+          ports:
+            - containerPort: 3306
+              protocol: TCP
+          
+          env:
+            - name: MYSQL_DATABASE
+              value: shopflow_home
+
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: home-backend-service-secret
+                  key:  DB_PASSSWORD
+      
+      volumeMounts:
+        - name: home-db-storage
+          mountPath: /var/lib/mysql
+  
+  volumeClaimTemplates:
+    - metadata: 
+      name: home-db-storage
+
+      spec:
+        storageClassName: shopflow-home-ebs
+        
+        accessModes:
+          - ReadWriteOnce
+        
+        resources:
+          requests:
+            storage:  2Gi

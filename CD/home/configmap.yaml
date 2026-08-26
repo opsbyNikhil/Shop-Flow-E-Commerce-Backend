@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: home-s-backendervice-config
+  namespace: dev
+data:
+  DEBUG: True
+  DB_NAME: shopflow_home
+  DB_HOST: db_shopflow_home
+  DB_PORT: 3306
+  FRONTEND_URL: http://18.142.93.207:5173
+  RESEND_FROM_EMAIL: onboarding@resend.dev

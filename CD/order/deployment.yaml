@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: order-backend-service
+  namespace:  dev
+spec:
+  minReadySeconds: 3
+  replicas: 2
+  selector:
+    matchExpressions:
+      - key: app
+        operator: In
+        values: order-backend-service-app
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  template:
+    metadata:
+      name: order-backend-service-pod
+      labels:
+        app: order-backend-service-app
+    spec:
+      containers:
+        - name: order-backend-service
+          image:  
+          envFrom:
+            - configMapRef:
+              name: order-backend-service-config
+            - secrettRef:
+              name: order-backend-service-secret
+          imagePullPolicy:  Always
+          readinessProbe:
+            httpGet:
+              path: /
+              ports: 8004
+          ports:
+            - containerPort:  8004
+              protocol: TCP
+          resources:
+            requests:
+              cpu: "50m"
+              memory: "80Mi"
+            limits:
+              cpu: "80m"
+              memory: "100Mi"

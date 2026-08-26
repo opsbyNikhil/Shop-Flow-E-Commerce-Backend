@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: StatefulSet
+
+metadata:
+  name: db_shopflow_orders
+  namespace: dev
+
+spec:
+  minReadySeconds: 3
+  replicas: 1
+  
+  serviceName: db_shopflow_orders
+
+  selector:
+    matchLabels:
+      app: db_shopflow_orders
+  
+  template:
+    metadata:
+      labels: 
+        app: db_shopflow_orders
+
+    spec:
+      containers:
+        - name: mysql
+          image: mysql:8.0
+          imagePullPolicy:  IfNotPresent
+
+          ports:
+            - containerPort: 3306
+              protocol: TCP
+          
+          env:
+            - name: MYSQL_DATABASE
+              value: shopflow_orders
+
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: order-backend-service-secret
+                  key:  DB_PASSSWORD
+      
+      volumeMounts:
+        - name: order-db-storage
+          mountPath: /var/lib/mysql
+  
+  volumeClaimTemplates:
+    - metadata: 
+      name: order-db-storage
+
+      spec:
+        storageClassName: shopflow-order-ebs
+        
+        accessModes:
+          - ReadWriteOnce
+        
+        resources:
+          requests:
+            storage:  2Gi

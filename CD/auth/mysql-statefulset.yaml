@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: StatefulSet
+
+metadata:
+  name: db_shopflow_auth
+  namespace: dev
+
+spec:
+  minReadySeconds: 3
+  replicas: 1
+  
+  serviceName: db_shopflow_auth
+
+  selector:
+    matchLabels:
+      app: db_shopflow_auth
+  
+  template:
+    metadata:
+      labels: 
+        app: db_shopflow_auth
+
+    spec:
+      containers:
+        - name: mysql
+          image: mysql:8.0
+          imagePullPolicy:  IfNotPresent
+
+          ports:
+            - containerPort: 3306
+              protocol: TCP
+          
+          env:
+            - name: MYSQL_DATABASE
+              value: shopflow_auth
+
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: auth-backend-service-secret
+                  key:  DB_PASSSWORD
+      
+      volumeMounts:
+        - name: auth-db-storage
+          mountPath: /var/lib/mysql
+  
+  volumeClaimTemplates:
+    - metadata: 
+      name: auth-db-storage
+
+      spec:
+        storageClassName: shopflow-auth-ebs
+        
+        accessModes:
+          - ReadWriteOnce
+        
+        resources:
+          requests:
+            storage:  2Gi

@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: home-backend-service
+  namespace:  dev
+spec:
+  minReadySeconds: 3
+  replicas: 2
+  selector:
+    matchExpressions:
+      - key: app
+        operator: In
+        values: home-backend-service-app
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  template:
+    metadata:
+      name: home-backend-service-pod
+      labels:
+        app: home-backend-service-app
+    spec:
+      containers:
+        - name: home-backend-service
+          image:  
+          envFrom:
+            - configMapRef:
+              name: home-backend-service-config
+            - secrettRef:
+              name: home-backend-service-secret
+          imagePullPolicy:  Always
+          readinessProbe:
+            httpGet:
+              path: /
+              ports: 8001
+          ports:
+            - containerPort:  8001
+              protocol: TCP
+          resources:
+            requests:
+              cpu: "50m"
+              memory: "80Mi"
+            limits:
+              cpu: "80m"
+              memory: "100Mi"

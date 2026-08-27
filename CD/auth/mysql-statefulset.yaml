@@ -2,23 +2,23 @@ apiVersion: apps/v1
 kind: StatefulSet
 
 metadata:
-  name: db_shopflow_auth
+  name: db-shopflow-auth
   namespace: dev
 
 spec:
   minReadySeconds: 3
   replicas: 1
   
-  serviceName: db_shopflow_auth
+  serviceName: db-shopflow-auth
 
   selector:
     matchLabels:
-      app: db_shopflow_auth
+      app: db-shopflow-auth
   
   template:
     metadata:
       labels: 
-        app: db_shopflow_auth
+        app: db-shopflow-auth
 
     spec:
       containers:
@@ -38,8 +38,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: auth-backend-service-secret
-                  key:  DB_PASSSWORD
-      
+                  key:  DB_PASSSWORD 
       volumeMounts:
         - name: auth-db-storage
           mountPath: /var/lib/mysql

@@ -2,23 +2,23 @@ apiVersion: apps/v1
 kind: StatefulSet
 
 metadata:
-  name: db_shopflow_home
+  name: db-shopflow-home
   namespace: dev
 
 spec:
   minReadySeconds: 3
   replicas: 1
   
-  serviceName: db_shopflow_home
+  serviceName: db-shopflow-home
 
   selector:
     matchLabels:
-      app: db_shopflow_home
+      app: db-shopflow-home
   
   template:
     metadata:
       labels: 
-        app: db_shopflow_home
+        app: db-shopflow-home
 
     spec:
       containers:

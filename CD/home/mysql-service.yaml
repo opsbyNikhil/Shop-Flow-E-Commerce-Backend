@@ -2,14 +2,14 @@ apiVersion: v1
 kind: Service
 
 metadata:
-  name: db_shopflow_home
+  name: db-shopflow-home
   namespace: dev
 
 spec:
   clusterIP: None
 
   selector:
-    app: db_shopflow_home
+    app: db-shopflow-home
 
   ports:
     - port: 3306

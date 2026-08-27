@@ -8,5 +8,5 @@ data:
   DB_NAME: shopflow_products
   DB_HOST: db_shopflow_products
   DB_PORT: "3306"
-  FRONTEND_URL: http://18.142.2.14:5173
+  FRONTEND_URL: http://3.0.235.84:5173
   RESEND_FROM_EMAIL: onboarding@resend.dev

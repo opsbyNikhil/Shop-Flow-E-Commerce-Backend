@@ -28,7 +28,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = ["56.10.55.153", "127.0.0.1", "localhost"]
+ALLOWED_HOSTS = ["13.215.86.33", "127.0.0.1", "localhost"]
 
 
 
@@ -148,12 +148,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 CORS_ALLOWED_ORIGINS = [
-    "http://18.142.93.207:5173",
-    "http://18.142.93.207:5174",
-    "http://18.142.93.207:5175",
-    "http://18.142.93.207:5176",
-    "http://18.142.93.207:5177",
-    "http://18.142.93.207:5178",
+    "http://18.142.2.14:5173",
+    "http://18.142.2.14:5174",
+    "http://18.142.2.14:5175",
+    "http://18.142.2.14:5176",
+    "http://18.142.2.14:5177",
+    "http://18.142.2.14:5178",
 ]
 
 RESEND_API_KEY = os.getenv("RESEND_API_KEY")

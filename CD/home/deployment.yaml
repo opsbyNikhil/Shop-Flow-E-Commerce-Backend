@@ -10,7 +10,8 @@ spec:
     matchExpressions:
       - key: app
         operator: In
-        values: home-backend-service-app
+        values: 
+          - home-backend-service-app
   strategy:
     type: RollingUpdate
     rollingUpdate:

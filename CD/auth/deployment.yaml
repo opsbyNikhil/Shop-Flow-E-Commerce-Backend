@@ -28,9 +28,9 @@ spec:
           image: 984912521466.dkr.ecr.ap-southeast-1.amazonaws.com/shopflow-auth-service-backend:1.0.0
           envFrom:
             - configMapRef:
-              name: auth-backend-service-config
+                name: auth-backend-service-config
             - secretRef:
-              name: auth-backend-service-secret
+                name: auth-backend-service-secret
           imagePullPolicy:  Always
           readinessProbe:
             httpGet:

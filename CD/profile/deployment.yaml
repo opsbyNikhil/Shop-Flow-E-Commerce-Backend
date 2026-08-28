@@ -25,7 +25,7 @@ spec:
     spec:
       containers:
         - name: profile-backend-service
-          image:  
+          image: 984912521466.dkr.ecr.ap-southeast-1.amazonaws.com/shopflow-profile-service-backend:1.0.0 
           envFrom:
             - configMapRef:
               name: profile-backend-service-config

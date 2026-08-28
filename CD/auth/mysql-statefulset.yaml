@@ -46,7 +46,7 @@ spec:
   
   volumeClaimTemplates:
     - metadata: 
-      name: auth-db-storage
+        name: auth-db-storage
 
       spec:
         storageClassName: shopflow-auth-ebs

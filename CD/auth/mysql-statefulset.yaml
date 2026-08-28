@@ -39,9 +39,10 @@ spec:
                 secretKeyRef:
                   name: auth-backend-service-secret
                   key:  DB_PASSSWORD 
-      volumeMounts:
-        - name: auth-db-storage
-          mountPath: /var/lib/mysql
+
+          volumeMounts:
+            - name: auth-db-storage
+              mountPath: /var/lib/mysql
   
   volumeClaimTemplates:
     - metadata: 

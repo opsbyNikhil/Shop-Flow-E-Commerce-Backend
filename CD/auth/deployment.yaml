@@ -5,7 +5,7 @@ metadata:
   namespace:  dev
 spec:
   minReadySeconds: 3
-  replicas: 2
+  replicas: 1
   selector:
     matchExpressions:
       - key: app

@@ -8,7 +8,8 @@ from .views import (
     login_password,
     forgot_password,
     reset_password,
-    resend_login_otp
+    resend_login_otp,
+    health_check
 )
 
 
@@ -56,5 +57,12 @@ urlpatterns = [
         "resend-login-otp/", 
         resend_login_otp, 
         name="resend-login-otp" 
-    )
+    ),
+
+    path(
+        "health/", 
+        health_check, 
+        name="health-check"
+    ),
+
 ]

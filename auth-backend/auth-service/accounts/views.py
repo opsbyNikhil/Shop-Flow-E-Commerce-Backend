@@ -1105,3 +1105,19 @@ def login_password(request):
         },
         status=status.HTTP_200_OK
     )
+
+# ============================================================
+# HEALTH CHECK
+# ============================================================
+
+@api_view(["GET"])
+@authentication_classes([])
+@permission_classes([AllowAny])
+def health_check(request):
+    return Response(
+        {
+            "status": "ok"
+        },
+        status=status.HTTP_200_OK
+    )
+

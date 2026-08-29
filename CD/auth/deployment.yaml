@@ -34,7 +34,7 @@ spec:
           imagePullPolicy:  Always
           readinessProbe:
             httpGet:
-              path: /health/
+              path: /api/auth/health/
               port: 8000
               httpHeaders:
                 - name: Host

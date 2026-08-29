@@ -184,11 +184,11 @@ REST_FRAMEWORK = {
 # --------------------------------------------------
 
 CORS_ALLOWED_ORIGINS = [
-    os.getenv("CORS_ORIGIN", "http://18.142.2.14:5173"),
+    os.getenv("CORS_ORIGIN", "http://3.0.235.84:5173"),
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    os.getenv("CSRF_ORIGIN", "http://18.142.2.14:5173"),
+    os.getenv("CSRF_ORIGIN", "http://3.0.235.84:5173"),
 ]
 
 CORS_ALLOW_CREDENTIALS = True

@@ -788,7 +788,7 @@ def forgot_password(request):
 
     frontend_url = os.getenv(
         "FRONTEND_URL",
-        "http://18.142.93.207:5173"
+        "http://3.0.235.84:5173"
     )
 
 

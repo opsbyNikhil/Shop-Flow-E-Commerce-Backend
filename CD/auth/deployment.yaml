@@ -34,8 +34,12 @@ spec:
           imagePullPolicy:  Always
           readinessProbe:
             httpGet:
-              path: /
+              path: /health/
               port: 8000
+            initialDelaySeconds: 15
+            periodSeconds: 10
+            timeoutSeconds: 3
+            failureThreshold: 5
           ports:
             - containerPort:  8000
               protocol: TCP

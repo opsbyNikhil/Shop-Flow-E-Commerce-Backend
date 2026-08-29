@@ -8,6 +8,6 @@ data:
   DB_NAME: shopflow_auth
   DB_HOST: db-shopflow-auth
   DB_PORT: "3306"
-  ALLOWED_HOSTS: "13.215.86.33,localhost,127.0.0.1,*"
+  ALLOWED_HOSTS: "3.0.235.84,localhost,127.0.0.1,*"
   FRONTEND_URL: http://3.0.235.84:5173
   RESEND_FROM_EMAIL: "onboarding@resend.dev"

@@ -40,9 +40,9 @@ spec:
                   name: home-backend-service-secret
                   key:  DB_PASSWORD
       
-      volumeMounts:
-        - name: home-db-storage
-          mountPath: /var/lib/mysql
+          volumeMounts:
+            - name: home-db-storage
+              mountPath: /var/lib/mysql
   
   volumeClaimTemplates:
     - metadata: 

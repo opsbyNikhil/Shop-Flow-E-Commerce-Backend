@@ -5,6 +5,7 @@ from .views import (
     categories,
     products,
     product_detail,
+    health_check
 )
 
 
@@ -32,6 +33,12 @@ urlpatterns = [
         "products/<int:product_id>/",
         product_detail,
         name="product-detail"
+    ),
+
+    path(
+        "health/", 
+        health_check, 
+        name="health_check"
     ),
 
 ]

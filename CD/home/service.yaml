@@ -6,7 +6,7 @@ metadata:
 spec:
   type: NodePort
   selector:
-    app: home-service-app
+    app: home-backend-service-app
   ports:
     - port: 8001
       targetPort: 8001

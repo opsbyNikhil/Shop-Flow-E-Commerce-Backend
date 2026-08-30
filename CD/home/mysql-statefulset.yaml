@@ -38,7 +38,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: home-backend-service-secret
-                  key:  DB_PASSSWORD
+                  key:  DB_PASSWORD
       
       volumeMounts:
         - name: home-db-storage

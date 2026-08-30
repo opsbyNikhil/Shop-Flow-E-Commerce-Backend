@@ -46,7 +46,7 @@ spec:
   
   volumeClaimTemplates:
     - metadata: 
-      name: home-db-storage
+        name: home-db-storage
 
       spec:
         storageClassName: shopflow-home-ebs

@@ -29,7 +29,7 @@ spec:
           envFrom:
             - configMapRef:
                 name: home-backend-service-config
-            - secrettRef:
+            - secretRef:
                 name: home-backend-service-secret
           imagePullPolicy:  Always
 
@@ -44,7 +44,7 @@ spec:
             periodSeconds: 10
             timeoutSeconds: 3
             failureThreshold: 1
-            
+
           ports:
             - containerPort:  8001
               protocol: TCP

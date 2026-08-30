@@ -32,6 +32,18 @@ spec:
             - secretRef:
                 name: auth-backend-service-secret
           imagePullPolicy:  Always
+
+          startupProbe:
+            httpGet:
+              path: /api/auth/health/
+              port: 8000
+              httpHeaders:
+                - name: Host
+                  value: localhost
+            failureThreshold: 30
+            periodSeconds: 5
+            timeoutSeconds: 3
+
           readinessProbe:
             httpGet:
               path: /api/auth/health/
@@ -39,10 +51,23 @@ spec:
               httpHeaders:
                 - name: Host
                   value:  localhost
-            initialDelaySeconds: 15
+            initialDelaySeconds: 5
             periodSeconds: 10
             timeoutSeconds: 3
-            failureThreshold: 5
+            failureThreshold: 1
+
+          livenessProbe:
+            httpGet:
+              path: /api/auth/health/
+              port: 8000
+              httpHeaders:
+                - name: Host
+                  value: localhost
+            initialDelaySeconds: 10
+            periodSeconds: 20
+            timeoutSeconds: 3
+            failureThreshold: 3
+
           ports:
             - containerPort:  8000
               protocol: TCP

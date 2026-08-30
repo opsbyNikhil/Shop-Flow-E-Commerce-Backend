@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: home-backend=service-config
+  name: home-backend-service-config
   namespace: dev
 data:
   DEBUG: "True"

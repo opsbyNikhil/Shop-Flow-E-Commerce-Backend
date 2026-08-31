@@ -38,7 +38,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: cart-backend-service-secret
-                  key:  DB_PASSSWORD
+                  key:  DB_PASSWORD
       
           volumeMounts:
             - name: cart-db-storage

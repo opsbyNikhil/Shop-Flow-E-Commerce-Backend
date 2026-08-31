@@ -5,6 +5,13 @@ from rest_framework import status
 from .models import Cart, CartItem
 from .serializers import CartSerializer
 
+from rest_framework.decorators import (
+    api_view,
+    authentication_classes,
+    permission_classes,
+)
+from rest_framework.permissions import AllowAny
+
 
 @api_view(["GET"])
 def get_cart(request, user_id):
@@ -146,4 +153,17 @@ def clear_cart(request, user_id):
 
     return Response(
         {"message": "Cart cleared successfully"}
+    )
+
+
+
+@api_view(["GET"])
+@authentication_classes([])
+@permission_classes([AllowAny])
+def health_check(request):
+    return Response(
+        {
+            "status": "ok"
+        },
+        status=status.HTTP_200_OK
     )

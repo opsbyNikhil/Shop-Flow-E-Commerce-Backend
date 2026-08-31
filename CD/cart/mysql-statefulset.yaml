@@ -46,7 +46,7 @@ spec:
   
   volumeClaimTemplates:
     - metadata: 
-      name: cart-db-storage
+        name: cart-db-storage
 
       spec:
         storageClassName: shopflow-cart-ebs

@@ -37,7 +37,7 @@ spec:
             - name: MYSQL_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: cart-service-secret
+                  name: cart-backend-service-secret
                   key:  DB_PASSSWORD
       
       volumeMounts:

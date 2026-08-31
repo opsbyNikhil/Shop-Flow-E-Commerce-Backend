@@ -40,9 +40,9 @@ spec:
                   name: cart-backend-service-secret
                   key:  DB_PASSSWORD
       
-      volumeMounts:
-        - name: cart-db-storage
-          mountPath: /var/lib/mysql
+          volumeMounts:
+            - name: cart-db-storage
+              mountPath: /var/lib/mysql
   
   volumeClaimTemplates:
     - metadata: 

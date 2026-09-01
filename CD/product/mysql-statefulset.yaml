@@ -46,7 +46,7 @@ spec:
   
   volumeClaimTemplates:
     - metadata: 
-      name: product-db-storage
+        name: product-db-storage
 
       spec:
         storageClassName: shopflow-product-ebs

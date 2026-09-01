@@ -4,7 +4,7 @@ metadata:
   name: product-backend-service-config
   namespace: dev
 data:
-  DEBUG: True
+  DEBUG: "True"
   DB_NAME: shopflow_products
   DB_HOST: db-shopflow-products
   DB_PORT: "3306"

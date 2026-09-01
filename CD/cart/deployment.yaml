@@ -5,7 +5,7 @@ metadata:
   namespace:  dev
 spec:
   minReadySeconds: 3
-  replicas: 2
+  # replicas: 2
   selector:
     matchExpressions:
       - key: app
@@ -25,17 +25,44 @@ spec:
     spec:
       containers:
         - name: cart-backend-service
-          image:  
+          image: 984912521466.dkr.ecr.ap-southeast-1.amazonaws.com/shopflow-cart-service-backend:1.0.1
           envFrom:
             - configMapRef:
-              name: cart-backend-service-config
-            - secrettRef:
-              name: cart-backend-service-secret
+                name: cart-backend-service-config
+            - secretRef:
+                name: cart-backend-service-secret
           imagePullPolicy:  Always
+
+          startupProbe:
+            httpGet:
+              path: /api/cart/health/
+              port: 8003
+              httpHeaders:
+                - name: Host
+                  value: localhost
+            failureThreshold: 30
+            periodSeconds: 5
+
+          livenessProbe:
+            httpGet:
+              path: /api/cart/health/
+              port: 8003
+              httpHeaders:
+                - name: Host
+                  value: localhost
+            initialDelaySeconds: 10
+            periodSeconds: 10
+
           readinessProbe:
             httpGet:
-              path: /
-              ports: 8003
+              path: /api/cart/health/
+              port: 8003
+              httpHeaders:
+                - name: Host
+                  value: localhost
+            initialDelaySeconds: 5
+            periodSeconds: 10
+
           ports:
             - containerPort:  8003
               protocol: TCP

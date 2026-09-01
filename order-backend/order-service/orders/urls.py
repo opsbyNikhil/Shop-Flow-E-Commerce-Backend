@@ -5,7 +5,8 @@ from .views import (
     OrderListView,
     OrderDetailView, 
     DeliveryAddressView, 
-    CreateOrderView
+    CreateOrderView,
+    health_check
 )
 
 
@@ -39,6 +40,12 @@ urlpatterns = [
         "create-order/",
         CreateOrderView.as_view(),
         name="create-order"
+    ),
+
+    path(
+        "health/", 
+        health_check, 
+        name="health_check"
     ),
 
 ]

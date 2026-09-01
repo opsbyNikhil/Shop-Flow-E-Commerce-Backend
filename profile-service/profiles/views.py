@@ -5,6 +5,12 @@ from rest_framework.views import APIView
 from .models import Profile
 from .serializers import ProfileSerializer
 
+from rest_framework.decorators import (
+    api_view,
+    authentication_classes,
+    permission_classes,
+)
+from rest_framework.permissions import AllowAny
 
 class ProfileView(APIView):
 
@@ -91,3 +97,14 @@ class DeleteProfileView(APIView):
             {"message": "Profile deleted successfully"},
             status=status.HTTP_204_NO_CONTENT
         )
+
+@api_view(["GET"])
+@authentication_classes([])
+@permission_classes([AllowAny])
+def health_check(request):
+    return Response(
+        {
+            "status": "ok"
+        },
+        status=status.HTTP_200_OK
+    )

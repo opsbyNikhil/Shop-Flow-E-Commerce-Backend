@@ -37,16 +37,16 @@ spec:
             - name: MYSQL_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: cart-service-secret
-                  key:  DB_PASSSWORD
+                  name: cart-backend-service-secret
+                  key:  DB_PASSWORD
       
-      volumeMounts:
-        - name: cart-db-storage
-          mountPath: /var/lib/mysql
+          volumeMounts:
+            - name: cart-db-storage
+              mountPath: /var/lib/mysql
   
   volumeClaimTemplates:
     - metadata: 
-      name: cart-db-storage
+        name: cart-db-storage
 
       spec:
         storageClassName: shopflow-cart-ebs

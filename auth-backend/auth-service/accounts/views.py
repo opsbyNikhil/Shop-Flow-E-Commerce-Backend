@@ -788,7 +788,7 @@ def forgot_password(request):
 
     frontend_url = os.getenv(
         "FRONTEND_URL",
-        "http://18.142.93.207:5173"
+        "http://3.0.235.84:5173"
     )
 
 
@@ -1105,3 +1105,19 @@ def login_password(request):
         },
         status=status.HTTP_200_OK
     )
+
+# ============================================================
+# HEALTH CHECK
+# ============================================================
+
+@api_view(["GET"])
+@authentication_classes([])
+@permission_classes([AllowAny])
+def health_check(request):
+    return Response(
+        {
+            "status": "ok"
+        },
+        status=status.HTTP_200_OK
+    )
+

@@ -6,6 +6,7 @@ from .views import (
     update_cart_item,
     remove_from_cart,
     clear_cart,
+    health_check
 )
 
 
@@ -39,5 +40,10 @@ urlpatterns = [
         "<int:user_id>/clear/",
         clear_cart,
         name="clear-cart"
+    ),
+    path(
+        "health/", 
+        health_check, 
+        name="health_check"
     ),
 ]

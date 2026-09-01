@@ -38,15 +38,15 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: home-backend-service-secret
-                  key:  DB_PASSSWORD
+                  key:  DB_PASSWORD
       
-      volumeMounts:
-        - name: home-db-storage
-          mountPath: /var/lib/mysql
+          volumeMounts:
+            - name: home-db-storage
+              mountPath: /var/lib/mysql
   
   volumeClaimTemplates:
     - metadata: 
-      name: home-db-storage
+        name: home-db-storage
 
       spec:
         storageClassName: shopflow-home-ebs

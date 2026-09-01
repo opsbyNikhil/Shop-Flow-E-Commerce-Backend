@@ -6,7 +6,8 @@ metadata:
 data:
   DEBUG: "True"
   DB_NAME: shopflow_cart
-  DB_HOST: db_shopflow_carts
+  DB_HOST: db-shopflow-carts
   DB_PORT: "3306"
+  ALLOWED_HOSTS: "3.0.235.84,localhost,127.0.0.1,*"
   FRONTEND_URL: http://3.0.235.84:5173
   RESEND_FROM_EMAIL: "onboarding@resend.dev"

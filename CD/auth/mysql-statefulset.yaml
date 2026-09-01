@@ -38,14 +38,15 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: auth-backend-service-secret
-                  key:  DB_PASSSWORD 
-      volumeMounts:
-        - name: auth-db-storage
-          mountPath: /var/lib/mysql
+                  key:  DB_PASSWORD 
+
+          volumeMounts:
+            - name: auth-db-storage
+              mountPath: /var/lib/mysql
   
   volumeClaimTemplates:
     - metadata: 
-      name: auth-db-storage
+        name: auth-db-storage
 
       spec:
         storageClassName: shopflow-auth-ebs

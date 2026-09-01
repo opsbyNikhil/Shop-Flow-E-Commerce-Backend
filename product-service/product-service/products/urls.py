@@ -4,6 +4,7 @@ from .views import (
     ProductListView,
     ProductDetailView,
     CategoryListView,
+    health_check
 )
 
 
@@ -25,6 +26,12 @@ urlpatterns = [
         "categories/",
         CategoryListView.as_view(),
         name="category-list"
+    ),
+
+        path(
+        "health/", 
+        health_check, 
+        name="health_check"
     ),
 
 ]

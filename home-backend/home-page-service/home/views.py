@@ -6,6 +6,14 @@ from rest_framework import status
 
 from .models import Category, Product
 
+from rest_framework.decorators import (
+    api_view,
+    authentication_classes,
+    permission_classes,
+)
+from rest_framework.permissions import AllowAny
+from rest_framework.response import Response
+from rest_framework import status
 
 def product_data(product):
     return {
@@ -136,4 +144,19 @@ def product_detail(request, product_id):
 
     return Response(
         product_data(product)
+    )
+
+# ============================================================
+# HEALTH CHECK
+# ============================================================
+
+@api_view(["GET"])
+@authentication_classes([])
+@permission_classes([AllowAny])
+def health_check(request):
+    return Response(
+        {
+            "status": "ok"
+        },
+        status=status.HTTP_200_OK
     )

@@ -1,12 +1,13 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: home-s-backendervice-config
+  name: home-backend-service-config
   namespace: dev
 data:
   DEBUG: "True"
   DB_NAME: shopflow_home
-  DB_HOST: db_shopflow_home
+  DB_HOST: db-shopflow-home
   DB_PORT: "3306"
-  FRONTEND_URL: http://18.142.2.14:5173
+  ALLOWED_HOSTS: "3.0.235.84,localhost,127.0.0.1,*"
+  FRONTEND_URL: http://13.0.235.84:5173
   RESEND_FROM_EMAIL: "onboarding@resend.dev"

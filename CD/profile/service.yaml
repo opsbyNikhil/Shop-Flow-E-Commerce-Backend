@@ -6,9 +6,9 @@ metadata:
 spec:
   type: NodePort
   selector:
-    app: profile-service-app
+    app: profile-backend-service-app
   ports:
-    - port: 8004
-      targetPort: 8004
+    - port: 8005
+      targetPort: 8005
       protocol: TCP
       nodePort: 30004

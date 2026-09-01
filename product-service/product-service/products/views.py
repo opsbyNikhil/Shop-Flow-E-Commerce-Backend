@@ -8,6 +8,12 @@ from .serializers import (
     CategorySerializer,
 )
 
+from rest_framework.decorators import (
+    api_view,
+    authentication_classes,
+    permission_classes,
+)
+from rest_framework.permissions import AllowAny
 
 class ProductListView(APIView):
 
@@ -75,3 +81,14 @@ class CategoryListView(APIView):
             serializer.data,
             status=status.HTTP_200_OK
         )
+
+@api_view(["GET"])
+@authentication_classes([])
+@permission_classes([AllowAny])
+def health_check(request):
+    return Response(
+        {
+            "status": "ok"
+        },
+        status=status.HTTP_200_OK
+    )

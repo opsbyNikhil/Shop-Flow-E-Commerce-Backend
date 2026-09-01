@@ -38,15 +38,15 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: order-backend-service-secret
-                  key:  DB_PASSSWORD
+                  key:  DB_PASSWORD
       
-      volumeMounts:
-        - name: order-db-storage
-          mountPath: /var/lib/mysql
+          volumeMounts:
+            - name: order-db-storage
+              mountPath: /var/lib/mysql
   
   volumeClaimTemplates:
     - metadata: 
-      name: order-db-storage
+        name: order-db-storage
 
       spec:
         storageClassName: shopflow-order-ebs

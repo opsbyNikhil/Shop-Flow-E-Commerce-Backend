@@ -18,7 +18,7 @@ spec:
   template:
     metadata:
       labels: 
-        app: db_shopflow_profiles
+        app: db-shopflow-profiles
 
     spec:
       containers:

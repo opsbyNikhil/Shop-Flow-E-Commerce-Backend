@@ -2,23 +2,23 @@ apiVersion: apps/v1
 kind: StatefulSet
 
 metadata:
-  name: db_shopflow_products
+  name: db-shopflow-products
   namespace: dev
 
 spec:
   minReadySeconds: 3
   replicas: 1
   
-  serviceName: db_shopflow_products
+  serviceName: db-shopflow-products
 
   selector:
     matchLabels:
-      app: db_shopflow_products
+      app: db-shopflow-products
   
   template:
     metadata:
       labels: 
-        app: db_shopflow_products
+        app: db-shopflow-products
 
     spec:
       containers:
@@ -38,11 +38,11 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: product-backend-service-secret
-                  key:  DB_PASSSWORD
+                  key:  DB_PASSWORD
       
-      volumeMounts:
-        - name: product-db-storage
-          mountPath: /var/lib/mysql
+          volumeMounts:
+            - name: product-db-storage
+              mountPath: /var/lib/mysql
   
   volumeClaimTemplates:
     - metadata: 

@@ -11,7 +11,7 @@ spec:
       - key: app
         operator: In
         values: 
-          - profile-backend-service-app
+          - profile-backend-service-svc-app
   strategy:
     type: RollingUpdate
     rollingUpdate:

@@ -5,6 +5,8 @@ from .views import (
     CreateProfileView,
     UpdateProfileView,
     DeleteProfileView,
+    health_check
+
 )
 
 urlpatterns = [
@@ -12,5 +14,6 @@ urlpatterns = [
     path("create/", CreateProfileView.as_view(), name="create-profile"),
     path("<int:user_id>/", ProfileDetailView.as_view(), name="profile-detail"),
     path("update/<int:user_id>/", UpdateProfileView.as_view(), name="update-profile"),
-    path("delete/<int:user_id>/", DeleteProfileView.as_view(), name="delete-profile"),
+    path("delete/<int:user_id>/", DeleteProfileView.as_view(), name="delete-profile"),        
+    path("health/", health_check, name="health_check"),
 ]

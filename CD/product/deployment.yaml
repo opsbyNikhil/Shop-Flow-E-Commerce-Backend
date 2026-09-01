@@ -25,7 +25,7 @@ spec:
     spec:
       containers:
         - name: product-backend-service
-          image: 984912521466.dkr.ecr.ap-southeast-1.amazonaws.com/shopflow-product-service-backend:1.0.0 
+          image: 984912521466.dkr.ecr.ap-southeast-1.amazonaws.com/shopflow-product-service-backend:1.0.1 
           envFrom:
             - configMapRef:
                 name: product-backend-service-config
@@ -62,7 +62,7 @@ spec:
                   value: localhost
             initialDelaySeconds: 5
             periodSeconds: 10
-            
+
           ports:
             - containerPort:  8002
               protocol: TCP

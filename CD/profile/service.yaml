@@ -8,7 +8,7 @@ spec:
   selector:
     app: profile-service-app
   ports:
-    - port: 8004
-      targetPort: 8004
+    - port: 8005
+      targetPort: 8005
       protocol: TCP
       nodePort: 30004
